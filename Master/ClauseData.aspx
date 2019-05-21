@@ -5,26 +5,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" Runat="Server">
     <form id="form1" runat="server">
     <div>
-    <div>
-        <asp:Label ID="Label1" runat="server" Text="Select Company"></asp:Label>
+        <br />
+    <div class="padding">
+        <asp:Label ID="Label1" runat="server" Text="Select Company : "></asp:Label>
         <asp:DropDownList ID="CompanyDropDown" runat="server" AutoPostBack="True" OnSelectedIndexChanged="CompanyDropDown_SelectedIndexChanged"></asp:DropDownList>
     </div>
-        <div>
-            <asp:Label ID="Label2" runat="server" Text="Select Standard"></asp:Label>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label2" runat="server" Text="Select Standard : "></asp:Label>
             <asp:DropDownList ID="StandardDropDown" runat="server"></asp:DropDownList>
         </div>
-        <div>
-            <asp:Label ID="Label4" runat="server" Text="Enter Clause ID"></asp:Label>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label4" runat="server" Text="Enter Clause ID : "></asp:Label>
             <asp:TextBox ID="inputClauseID" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Label ID="Label6" runat="server" Text="Enter Clause"></asp:Label>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label6" runat="server" Text="Enter Clause : "></asp:Label>
             <asp:TextBox ID="inputClauseText" runat="server"></asp:TextBox>
+        </div >
+        <br />
+        <div class="padding">
+            <asp:Button CssClass="btn btn-primary" ID="standardButton" runat="server" Text="Add" OnClick="standardButton_Click" />
         </div>
-        <div>
-            <asp:Button ID="standardButton" runat="server" Text="Next" OnClick="standardButton_Click" />
-        </div>
-        <div>
+        <br />
+        <div class="padding">
             <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
         </div>
     </div>

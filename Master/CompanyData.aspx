@@ -4,14 +4,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="Server">
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label2" runat="server" Text="Company Name"></asp:Label>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label2" runat="server" Text="Enter Company Name : "></asp:Label>
             <asp:TextBox ID="inputCompany" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Button ID="companyButton" runat="server" Text="Next" OnClick="companyButton_Click" />
+        <br />
+        <div class="padding">
+            <asp:Button CssClass="btn btn-primary" ID="companyButton" runat="server" Text="Add" OnClick="companyButton_Click" />
         </div>
-        <div>
+        <br />
+        <div class="padding">
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </div>
     </form>

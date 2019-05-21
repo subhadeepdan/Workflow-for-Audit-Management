@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <link href="css/simple-sidebar.css" rel="stylesheet" />
     <title>Simple Sidebar - Start Bootstrap Template</title>
-
+    <link href="style.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap-grid.css" rel="stylesheet" />
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />

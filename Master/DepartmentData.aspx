@@ -1,21 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DepartmentData.aspx.cs" Inherits="_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="Server">
+    
     <form id="form1" runat="server">
-    <div>
-        <asp:Label ID="Label1" runat="server" Text="Select Company"></asp:Label>
-        <asp:DropDownList ID="CompanyDropDown" runat="server"></asp:DropDownList>
-    </div>
-        <div>
-            <asp:Label ID="Label2" runat="server" Text="Enter Department"></asp:Label>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label1" runat="server" Text="Select Company : "></asp:Label>
+            <asp:DropDownList ID="CompanyDropDown" runat="server"></asp:DropDownList>
+        </div>
+        <br />
+        <div class="padding">
+            <asp:Label ID="Label2" runat="server" Text="Enter Department : "></asp:Label>
             <asp:TextBox ID="inputDepartment" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Button ID="standardButton" runat="server" Text="Next" OnClick="standardButton_Click" />
+        <br />
+        <div class="padding">
+            <asp:Button CssClass="btn btn-primary" ID="standardButton" runat="server" Text="Add" OnClick="standardButton_Click" />
         </div>
-        <div>
+        <br />
+        <div class="padding">
             <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
         </div>
     </form>
