@@ -9,8 +9,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link href="css/simple-sidebar.css" rel="stylesheet" />
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Workflow for Audit Management</title>
     <link href="style.css" rel="stylesheet" />
+    <link href="font.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap-grid.css" rel="stylesheet" />
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,45 +25,38 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Audit Management </div>
+            <div class="sidebar-heading"><b>Audit Management </b></div>
             <div class="list-group list-group-flush">
-                <ul class="nav navbar-nav" id="sidenav01" style="float: none;display: block;">
-                            <li>
-                                <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="list-group-item list-group-item-action bg-light">
-                                    <span class="glyphicon glyphicon-cloud"></span>Master Data Screen<span class="caret pull-right"></span>
-                                </a>
-                                <div class="collapse" id="toggleDemo" style="height: 0px;">
-                                    <ul class="nav nav-list">
-                                        <li ><a href="CompanyData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">Company</a></li>
-                                        <li ><a href="DepartmentData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">Department</a></li>
-                                        <li ><a href="SectionData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">Section</a></li>
-                                        <li ><a href="StandardData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">Standard</a></li>
-                                        <li ><a href="ClauseData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">Clause</a></li>
-                                        <li ><a href="SubClauseData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right:100px;margin-left:20px;width:200px;">SubClause</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
                 <div>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Audit Program</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Audit Plan</a>
+                    <a href="Home.aspx" class="list-group-item list-group-item-action bg-light">Home</a>
                 </div>
-
-
-
-                
-
-
-
-                
-                        
-                    
-
-
+                <ul class="nav navbar-nav" id="sidenav01" style="float: none; display: block;">
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="list-group-item list-group-item-action bg-light">
+                            <span class="glyphicon glyphicon-cloud"></span>Master Data Screen<span class="caret pull-right"></span>
+                        </a>
+                        <div class="collapse" id="toggleDemo" style="height: 0px;">
+                            <ul class="nav nav-list">
+                                <li><a href="CompanyData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">Company</a></li>
+                                <li><a href="DepartmentData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">Department</a></li>
+                                <li><a href="SectionData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">Section</a></li>
+                                <li><a href="StandardData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">Standard</a></li>
+                                <li><a href="ClauseData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">Clause</a></li>
+                                <li><a href="SubClauseData.aspx" class="list-group-item list-group-item-action bg-light" style="margin-right: 100px; margin-left: 20px; width: 200px;">SubClause</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <a href="Transaction.aspx" class="list-group-item list-group-item-action bg-light">Audit Program</a>
+                    <a href="AuditPlan.aspx" class="list-group-item list-group-item-action bg-light">View Audit Program</a>
+                    <a href="ViewAuditPlan.aspx" class="list-group-item list-group-item-action bg-light">View Audit Plan</a>
+                </div>
 
             </div>
         </div>
@@ -86,19 +80,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="LoginPage.aspx">Logout <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </nav>
@@ -124,13 +106,13 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-    
-    
-    <script type = "text/javascript" >        //Script for avoiding going to home page after logout
+
+
+    <script type="text/javascript">        //Script for avoiding going to home page after logout
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
-</script>
+    </script>
 
 </body>
 </html>

@@ -31,7 +31,12 @@ public partial class LoginPage : System.Web.UI.Page
                 if (sdr.Read())
                 {
                     Label4.Text = "Login Sucessful!";
+
+                    Session["UID"] = uid;
+                    Session["UserName"] = sdr["Name"];
+
                     Response.Redirect("Home.aspx?EID="+sdr["Name"].ToString());
+                    
                     //Session.RemoveAll();
                 }
                 else

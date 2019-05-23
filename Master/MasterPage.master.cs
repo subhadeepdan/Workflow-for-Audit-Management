@@ -9,7 +9,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string username = Request.QueryString["EID"];
+        //string username = Request.QueryString["EID"];
+        string username = Session["UserName"].ToString();
         userLabel.InnerText = "Welcome "+username;
     }
 }

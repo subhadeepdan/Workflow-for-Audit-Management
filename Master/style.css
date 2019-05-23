@@ -16,5 +16,12 @@
 }
 
 .padding-button {
-            padding-left: 120px;
+            padding-left:80px;
+            margin-top:50px;
+        }
+
+ body, h1 {
+            font-family: "Raleway", sans-serif;
+            font-size:medium;
+            
         }
