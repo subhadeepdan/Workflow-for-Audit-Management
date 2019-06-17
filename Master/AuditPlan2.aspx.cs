@@ -12,6 +12,45 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string fromDate, toDate;
+        existingLabel.Visible = true;
+        string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("Select * from AuditPlan where ([PersonalNo]=@PersonalNo) AND ([PID]=@PID)", con);
+            cmd.Parameters.AddWithValue("@PersonalNo", Session["UID"].ToString());
+            cmd.Parameters.AddWithValue("@PID", Session["ProgramID"]);
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                existingLabel.Visible = false;
+                
+            }
+        }
+
+        //set date input dependent on selected Audit Program
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * from AuditProgram where ([PID]=@PID)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@PID", Session["ProgramID"]);
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            fromDate = dr["From"].ToString();
+            toDate = dr["To"].ToString();
+        }
+        inputFrom.Attributes["min"] = fromDate;
+        inputFrom.Attributes["max"] = toDate;
+        inputTo.Attributes["min"] = fromDate;
+        inputTo.Attributes["max"] = toDate;
+
+
         if (!IsPostBack)
         {
             ProgramIDLabel.Text = Session["ProgramID"].ToString();
@@ -58,11 +97,12 @@ public partial class _Default : System.Web.UI.Page
                         using (SqlConnection con = new SqlConnection(connectionString))
                         {
 
-                            SqlCommand check_AuditProgram = new SqlCommand("select count(*) from AuditPlan where ([CompanyName]=@CompanyName) AND ([DepartmentName]=@DepartmentName) AND ([SectionName]=@SectionName) ", con);
+                            SqlCommand check_AuditProgram = new SqlCommand("select count(*) from AuditPlan where ([CompanyName]=@CompanyName) AND ([DepartmentName]=@DepartmentName) AND ([SectionName]=@SectionName) AND ([PersonalNo]=@PersonalNo)", con);
                             con.Open();
                             check_AuditProgram.Parameters.AddWithValue("@CompanyName", companyName);
                             check_AuditProgram.Parameters.AddWithValue("@DepartmentName", departmentName);
                             check_AuditProgram.Parameters.AddWithValue("@SectionName", SectionDropDown.SelectedItem.Value);
+                            check_AuditProgram.Parameters.AddWithValue("@PersonalNo", Session["UID"]);
                             int UserExist = (int)check_AuditProgram.ExecuteScalar();
 
                             if (UserExist > 0)
@@ -87,6 +127,17 @@ public partial class _Default : System.Web.UI.Page
                                 {
                                     Label3.Text = " Your data has been saved in the database";
                                     Label3.ForeColor = System.Drawing.Color.ForestGreen;
+
+                                    using (SqlConnection con1 = new SqlConnection(connectionString))
+                                    {
+                                        SqlCommand cmd1 = new SqlCommand("Select * from AuditPlan where ([PersonalNo]=@PersonalNo) AND ([PID]=@PID)", con1);
+                                        cmd1.Parameters.AddWithValue("@PersonalNo", Session["UID"].ToString());
+                                        cmd1.Parameters.AddWithValue("@PID", Session["ProgramID"]);
+                                        con1.Open();
+                                        SqlDataReader rdr = cmd1.ExecuteReader();
+                                        GridView1.DataSource = rdr;
+                                        GridView1.DataBind();
+                                    }
 
                                 }
                                 else

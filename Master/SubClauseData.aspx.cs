@@ -12,6 +12,25 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        existingLabel.Visible = true;
+
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("Select * from SubClause", con);
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                existingLabel.Visible = false;
+
+            }
+        }
         if (!IsPostBack)
         {
             LoadCompanyDropDownList();
@@ -72,6 +91,15 @@ public partial class _Default : System.Web.UI.Page
                             Label3.Text = " Your data has been saved in the database";
                             Label3.ForeColor = System.Drawing.Color.ForestGreen;
 
+                            using (SqlConnection con1 = new SqlConnection(connectionString))
+                            {
+                                SqlCommand cmd1 = new SqlCommand("Select * from SubClause", con1);
+                                con1.Open();
+                                SqlDataReader rdr = cmd1.ExecuteReader();
+                                GridView1.DataSource = rdr;
+                                GridView1.DataBind();
+                            }
+
                         }
                         else
                         {
@@ -91,6 +119,7 @@ public partial class _Default : System.Web.UI.Page
         else
         {
             Label3.Text = "Some Input is missing";
+            Label3.ForeColor = System.Drawing.Color.Red;
         }
 
     }

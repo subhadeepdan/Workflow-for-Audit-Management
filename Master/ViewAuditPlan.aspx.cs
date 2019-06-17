@@ -18,8 +18,15 @@ public partial class _Default : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@PersonalNo", Session["UID"].ToString());
             con.Open();
             SqlDataReader rdr = cmd.ExecuteReader();
-            GridView1.DataSource = rdr;
-            GridView1.DataBind();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                Label3.Text = "No Audit Plan exists for logged in user";
+            }
         }
     }
 }

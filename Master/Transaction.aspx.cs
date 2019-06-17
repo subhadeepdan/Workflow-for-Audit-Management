@@ -12,6 +12,25 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        existingLabel.Visible = true;
+
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("Select * from AuditProgram", con);
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                existingLabel.Visible = false;
+                
+            }
+        }
         if (!IsPostBack)
         {
             LoadCompanyDropDownList();
@@ -85,6 +104,15 @@ public partial class _Default : System.Web.UI.Page
                                 Label3.Text = " Your data has been saved in the database";
                                 Label3.ForeColor = System.Drawing.Color.ForestGreen;
 
+                                using (SqlConnection con1 = new SqlConnection(connectionString))
+                                {
+                                    SqlCommand cmd1 = new SqlCommand("Select * from AuditProgram", con1);
+                                    con1.Open();
+                                    SqlDataReader rdr = cmd1.ExecuteReader();
+                                    GridView1.DataSource = rdr;
+                                    GridView1.DataBind();
+                                }
+
                             }
                             else
                             {
@@ -125,7 +153,15 @@ public partial class _Default : System.Web.UI.Page
             DepartmentDropDown.Items.Clear();
             DepartmentDropDown.Items.Insert(0, selectStandard);
             DepartmentDropDown.Enabled = false;
-            Label3.Text = "Select Company";
+            ListItem selectClause = new ListItem("Select Clause", "-1");
+            ClauseDropDown.Items.Clear();
+            ClauseDropDown.Items.Insert(0, selectClause);
+            ClauseDropDown.Enabled = false;
+            ListItem selectSubClause = new ListItem("Select SubClause", "-1");
+            SubClauseDropDown.Items.Clear();
+            SubClauseDropDown.Items.Insert(0, selectSubClause);
+            SubClauseDropDown.Enabled = false;
+            //Label3.Text = "Select Company";
 
         }
         else
@@ -275,6 +311,10 @@ public partial class _Default : System.Web.UI.Page
             ClauseDropDown.Items.Clear();
             ClauseDropDown.Items.Insert(0, selectClause);
             ClauseDropDown.Enabled = false;
+            ListItem selectSubClause = new ListItem("Select SubClause", "-1");
+            SubClauseDropDown.Items.Clear();
+            SubClauseDropDown.Items.Insert(0, selectSubClause);
+            SubClauseDropDown.Enabled = false;
             Label3.Text = "Select Standard";
         }
         else

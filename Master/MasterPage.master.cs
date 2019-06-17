@@ -12,5 +12,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         //string username = Request.QueryString["EID"];
         string username = Session["UserName"].ToString();
         userLabel.InnerText = "Welcome "+username;
+        username1.InnerHtml = "Welcome " + username;
     }
 }

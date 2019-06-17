@@ -32,14 +32,11 @@
                                         <label for="inputPassword">Password</label>
                                     </div>
 
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                        <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                    </div>
+                                    
 
                                     <button id="loginButton" onServerClick="loginButton_Click" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" runat="server">Sign in</button>
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot password?</a>
+                                        <a class="medium" href="RegistrationPage.aspx">Sign Up</a>
                                     </div>
                                     <asp:Label class="custom-control" ID="Label4" runat="server" Text=""></asp:Label>
                                 </form>

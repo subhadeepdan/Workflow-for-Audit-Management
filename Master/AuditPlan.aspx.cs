@@ -32,8 +32,17 @@ public partial class _Default : System.Web.UI.Page
             con.Open();
             sda.SelectCommand = cmd;
             sda.Fill(dt);
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
+            if (dt.Rows.Count == 0)             //-------------Check whether gridview is empty-------------------
+            {
+                Button1.Enabled = false;
+                Button1.Visible = false;
+                Label3.Text = "No Audit Program exists for logged in user";
+            }
+            else
+            {
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
         }
         catch (Exception ex)
         {
@@ -62,6 +71,7 @@ public partial class _Default : System.Web.UI.Page
                     if (hf != null)
                     {
                         Session["ProgramID"] = hf.Value;
+                        Session["RadioChecked"] = "true";
                     }
 
                     break;
@@ -99,6 +109,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void standardButton_Click(object sender, EventArgs e)
     {
-        Response.Redirect("AuditPlan2.aspx");
+        if (Session["RadioChecked"] != null && Session["RadioChecked"].ToString() == "true")
+        {
+            Response.Redirect("AuditPlan2.aspx");
+        }
+        else
+        {
+            Label3.Text = "Select an Audit Program !";
+        }
+
     }
 }

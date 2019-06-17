@@ -12,6 +12,8 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        existingLabel.Visible = true;
         if (!IsPostBack)
         {
             LoadCompanyDropDownList();
@@ -22,6 +24,23 @@ public partial class _Default : System.Web.UI.Page
             DepartmentDropDown.Items.Insert(0, selectDepartment);
 
             DepartmentDropDown.Enabled = false;
+        }
+
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("Select * from Section", con);
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                existingLabel.Visible = false;
+
+            }
         }
     }
 
@@ -45,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
 
                     if (UserExist > 0)
                     {
-                        Label3.Text = "This Section already exists for selected Company and Department";
+                        Label3.Text = "Error! This Section already exists for selected Company and Department";
                         //Username exist
                     }
                     else
@@ -62,6 +81,15 @@ public partial class _Default : System.Web.UI.Page
                         {
                             Label3.Text = " Your data has been saved in the database";
                             Label3.ForeColor = System.Drawing.Color.ForestGreen;
+
+                            using (SqlConnection con1 = new SqlConnection(connectionString))
+                            {
+                                SqlCommand cmd1 = new SqlCommand("Select * from Section", con1);
+                                con1.Open();
+                                SqlDataReader rdr = cmd1.ExecuteReader();
+                                GridView1.DataSource = rdr;
+                                GridView1.DataBind();
+                            }
 
                         }
                         else

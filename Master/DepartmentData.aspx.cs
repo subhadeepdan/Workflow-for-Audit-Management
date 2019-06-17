@@ -14,11 +14,28 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        existingLabel.Visible = true;
         if (!IsPostBack)
         {
             LoadCompanyDropDownList();
             ListItem selectCompany = new ListItem("Select Company", "-1");
             CompanyDropDown.Items.Insert(0, selectCompany);
+        }
+        using (SqlConnection con = new SqlConnection(connectionString))
+        {
+            SqlCommand cmd = new SqlCommand("Select * from Department", con);
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                GridView1.DataSource = rdr;
+                GridView1.DataBind();
+            }
+            else
+            {
+                existingLabel.Visible = false;
+
+            }
         }
     }
 
@@ -41,7 +58,7 @@ public partial class _Default : System.Web.UI.Page
 
                     if (UserExist > 0)
                     {
-                        Label3.Text = "This Department already exists for selected company";
+                        Label3.Text = "Error! This Department already exists for selected company";
                         //Username exist
                     }
                     else
@@ -56,6 +73,15 @@ public partial class _Default : System.Web.UI.Page
                         {
                             Label3.Text = " Your data has been saved in the database";
                             Label3.ForeColor = System.Drawing.Color.ForestGreen;
+
+                            using (SqlConnection con1 = new SqlConnection(connectionString))
+                            {
+                                SqlCommand cmd1 = new SqlCommand("Select * from Department", con1);
+                                con1.Open();
+                                SqlDataReader rdr = cmd1.ExecuteReader();
+                                GridView1.DataSource = rdr;
+                                GridView1.DataBind();
+                            }
 
                         }
                         else
